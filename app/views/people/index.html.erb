@@ -1,0 +1,78 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800 center">List <%= params[:category]&.capitalize %></h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Data <%= params[:category]&.capitalize %></h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nama Lengkap</th>
+              <th>Nama Panggilan</th>
+              <th>Jenis Kelamin</th>
+              <th>Tanggal Lahir</th>
+              <th>Tempat Lahir</th>
+              <th>Golongan Darah</th>
+              <th>Desa</th>
+              <th>Kelompok</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @people.each do |person| %>
+              <tr>
+                <td><%= person.fullname %></td>
+                <td><%= person.nickname %></td>
+                <td><%= person.sex %></td>
+                <td><%= person.birthday %></td>
+                <td><%= person.place_of_birth %></td>
+                <td><%= person.blood_type %></td>
+                <td><%= person&.kelompok&.desa&.name %></td>
+                <td><%= person&.kelompok&.name %></td>
+                <td class='action'>
+                  <%= link_to person, class: 'show', title: 'show' do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <%= link_to edit_person_path(person), title: 'edit' do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                  <%= link_to person_path(id: person.id, category: params[:category]),
+                              method: :delete,
+                              data: {
+                                confirm: "Anda Yakin menghapus data #{person.nickname}?",
+                                disable_with: "Proses..."
+                              },
+                              title: "Delete" do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Nama Lengkap</th>
+              <th>Nama Panggilan</th>
+              <th>Jenis Kelamin</th>
+              <th>Tanggal Lahir</th>
+              <th>Tempat Lahir</th>
+              <th>Golongan Darah</th>
+              <th>Desa</th>
+              <th>Kelompok</th>
+              <th>Action</th>
+            </tr>
+        </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /.container-fluid -->

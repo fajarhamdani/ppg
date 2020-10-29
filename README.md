@@ -22,3 +22,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+heroku --version
+heroku login
+git push heroku master
+heroku run pg:reset
+heroku run rake db:migrate
+heroku run rake db:seed
+heroku restart
+heroku run rails c
+heroku logs -n 250

@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'Start Delete current data'
-Rule.delete_all
+Role.delete_all
 Desa.delete_all
 Kelompok.delete_all
 Person.delete_all
